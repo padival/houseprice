@@ -39,6 +39,19 @@ plt.ylabel('Actual Price')
 plt.title('Linear Regression Model')
 plt.show()
 
+for i in range (-2, 3):
+    alpha = 10**i
+    rm = linear_model.Ridge(alpha=alpha)
+    ridge_model = rm.fit(X_train, y_train)
+    preds_ridge = ridge_model.predict(X_test)
+    plt.scatter(preds_ridge, actual_values, alpha=.75, color='b')
+    plt.xlabel('Predicted Price')
+    plt.ylabel('Actual Price')
+    plt.title('Ridge Regularization with alpha = {}'.format(alpha))
+    overlay = 'R^2 is: {}\nRMSE is: {}'.format(ridge_model.score(X_test, y_test),mean_squared_error(y_test, preds_ridge))
+    plt.annotate(s=overlay,xy=(12.1,10.6),size='x-large')
+    plt.show()
+
 submission = pd.DataFrame()
 submission['Id'] = test.Id
 feats = test.select_dtypes(include=[np.number]).drop(['Id'], axis=1).interpolate()
