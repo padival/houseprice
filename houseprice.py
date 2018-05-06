@@ -33,8 +33,7 @@ model = lr.fit(X_train, y_train)
 predictions = model.predict(X_test)
 from sklearn.metrics import mean_squared_error
 actual_values = y_test
-plt.scatter(predictions, actual_values, alpha=.75,
-            color='b') #alpha helps to show overlapping data
+plt.scatter(predictions, actual_values, alpha=.75, color='b') 
 plt.xlabel('Predicted Price')
 plt.ylabel('Actual Price')
 plt.title('Linear Regression Model')
@@ -43,7 +42,8 @@ plt.show()
 submission = pd.DataFrame()
 submission['Id'] = test.Id
 feats = test.select_dtypes(include=[np.number]).drop(['Id'], axis=1).interpolate()
-predictions = model.predict(feats)
+predict = model.predict(feats)
+predictions=predict*10000
 final_predictions = np.exp(predictions)
 
 print ("Original predictions are: \n", predictions[:5], "\n")
