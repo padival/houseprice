@@ -58,10 +58,11 @@ feats = test.select_dtypes(include=[np.number]).drop(['Id'], axis=1).interpolate
 predict = model.predict(feats)
 predictions=predict*10000
 final_predictions = np.exp(predictions)
+plt.scatter(predictions, final_predictions)
+plt.xlabel(Model Prediction)
+plt.ylabel(Predicted Value)
+plt.show()
 
-print ("Original predictions are: \n", predictions[:5], "\n")
-print ("Final predictions are: \n", final_predictions[:5])
-
-submission['SalePrice'] = final_predictions
+submission['FinalPrice'] = final_predictions
 submission.head()
 submission.to_csv('submission1.csv', index=False)
