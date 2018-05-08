@@ -55,8 +55,8 @@ for i in range (-2, 3):
 submission = pd.DataFrame()
 submission['Id'] = test.Id
 feats = test.select_dtypes(include=[np.number]).drop(['Id'], axis=1).interpolate()
-predict = model.predict(feats)
-predictions=predict*10000
+predicted = model.predict(feats)
+predictions=predicted*10000
 final_predictions = np.exp(predictions)
 plt.scatter(predictions, final_predictions)
 plt.xlabel('Model Prediction')
