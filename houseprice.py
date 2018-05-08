@@ -59,8 +59,8 @@ predict = model.predict(feats)
 predictions=predict*10000
 final_predictions = np.exp(predictions)
 plt.scatter(predictions, final_predictions)
-plt.xlabel(Model Prediction)
-plt.ylabel(Predicted Value)
+plt.xlabel('Model Prediction')
+plt.ylabel('Predicted Value')
 plt.show()
 
 submission['FinalPrice'] = final_predictions
