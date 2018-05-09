@@ -30,6 +30,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_
 from sklearn import linear_model
 lr = linear_model.LinearRegression()
 model = lr.fit(X_train, y_train)
+
+print ("R^2 is: \n", model.score(X_test, y_test))
+
 predictions = model.predict(X_test)
 from sklearn.metrics import mean_squared_error
 actual_values = y_test
@@ -52,6 +55,7 @@ for i in range (-2, 3):
     plt.annotate(s=overlay,xy=(12.1,10.6),size='x-large')
     plt.show()
 
+    
 submission = pd.DataFrame()
 submission['Id'] = test.Id
 feats = test.select_dtypes(include=[np.number]).drop(['Id'], axis=1).interpolate()
